@@ -1,30 +1,26 @@
-import random
+from datetime import datetime, timedelta
 
-def get_numbers_ticket(min_value, max_value, quantity):
-    # Перевірка на валідність вхідних параметрів
-    if not (1 <= min_value <= 1000 and 1 <= max_value <= 1000 and min_value < max_value):
-        return []  # Повертаємо порожній список, якщо параметри не валідні
-    if not (min_value <= quantity <= max_value):
-        return []  # Повертаємо порожній список, якщо кількість не у межах
+users = [
+    {"name": "John Doe", "birthday": "1985.05.08"},
+    {"name": "Jane Smith", "birthday": "1990.05.07"},
+    {"name": "James Roney", "birthday": "1985.05.09"},
+    {"name": "David James", "birthday": "1990.04.22"},
+    {"name": "Jo Cole", "birthday": "1988.08.10"},
+    {"name": "Steave Smith", "birthday": "1990.05.07"}
+]
 
-    # Переконайтесь, що діапазон достатньо великий для кількості
-    if (max_value - min_value + 1) < quantity:
-        return []  # Повертаємо порожній список, якщо діапазон не достатньо великий
-
-    # Використання множини для зберігання унікальних чисел
-    numbers_set = set()
-    while len(numbers_set) < quantity:
-        numbers_set.add(random.randint(min_value, max_value))
-
-    # Перетворення на список та сортування
-    sorted_numbers = sorted(list(numbers_set))
-    return sorted_numbers
+def get_upcoming_birthdays(users):
+    current_date = datetime.today().date()
+    current_week_ending = current_date + timedelta(7)
+    print(current_date,current_week_ending)
+    result:list = []
+    for user in users:
+        congratulation_date = datetime.strptime(user["birthday"], '%Y.%m.%d').replace(year=2024).date()
+        result.append({"name":user["name"], "congratulation_date": f"{congratulation_date}"})
+    return result
 
 
-# Приклад використання
-min_value = "1"
-max_value = 49
-quantity = 6
+upcoming_birthdays = get_upcoming_birthdays(users)
+print("Список привітань на цьому тижні:", upcoming_birthdays)
 
-ticket = get_numbers_ticket(min_value, max_value, quantity)
-print("Випадковий лотерейний квиток:", ticket)
+# congratulation_date

@@ -14,9 +14,9 @@ def get_numbers_ticket(min:int, max:int, quantity:int):
     except TypeError:
         return "Всі параметри мають бути дійсним цілим числом"    
     
-print(get_numbers_ticket("3", 10, 2))
-print(get_numbers_ticket(10, 10, 2))
-print(get_numbers_ticket(0, 10, 2))
-print(get_numbers_ticket(0, 1005, 2))
-print(get_numbers_ticket(1, 10, 20))
+# print(get_numbers_ticket("3", 10, 2))
+# print(get_numbers_ticket(10, 10, 2))
+# print(get_numbers_ticket(0, 10, 2))
+# print(get_numbers_ticket(0, 1005, 2))
+# print(get_numbers_ticket(1, 10, 20))
 print(get_numbers_ticket(1, 100, 10))

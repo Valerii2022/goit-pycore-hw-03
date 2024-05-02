@@ -9,6 +9,6 @@ def get_days_from_today(date:str) -> str:
     except ValueError:
         return "Дата має бути у форматі 'РРРР-ММ-ДД'"
 
+# print(get_days_from_today("20-13-05"))
+# print(get_days_from_today("dfgdfg"))
 print(get_days_from_today("2021-05-05"))
-print(get_days_from_today("20-13-05"))
-print(get_days_from_today("dfgdfg"))
