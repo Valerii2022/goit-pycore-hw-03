@@ -20,18 +20,22 @@ users = [
 
 def get_upcoming_birthdays(users):
     current_date = datetime.today().date()
-    current_week_ending = current_date + timedelta(7)
-    result:list = []
+    current_timedelta = current_date + timedelta(7)
+    current_year = datetime.now().year
+    result = []
     for user in users:
-        congratulation_date = datetime.strptime(user["birthday"], '%Y.%m.%d').replace(year=2024).date()
-        if congratulation_date >= current_date and congratulation_date <= current_week_ending:
+        congratulation_date = datetime.strptime(user["birthday"], '%Y.%m.%d').replace(year=current_year).date()
+        birthday_this_year = (congratulation_date - current_date).days
+        if birthday_this_year < 0:
+            congratulation_date = congratulation_date.replace(year=2025)
+        if congratulation_date >= current_date and congratulation_date <= current_timedelta:
             if congratulation_date.weekday() == 5:
                 congratulation_date = congratulation_date + timedelta(2)
             if congratulation_date.weekday() == 6:
                 congratulation_date = congratulation_date + timedelta(1)
             result.append({"name":user["name"], "congratulation_date": f"{congratulation_date}"})
     result.sort(key=lambda x: x["congratulation_date"])
-    return result, len(result)
+    return result
 
 
 upcoming_birthdays = get_upcoming_birthdays(users)
